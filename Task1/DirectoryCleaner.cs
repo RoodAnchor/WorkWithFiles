@@ -10,8 +10,20 @@ namespace Task1
     public class DirectoryCleaner
     {
         #region Fields
-        private const Int32 _idleMinutes = 3;
+        private Int32 _idleMinutes = 0;
         #endregion Fields
+
+        #region Properties
+        public DirectoryCleanerReport Report { get; set; }
+        #endregion Properties
+
+        #region Constructors
+        public DirectoryCleaner(Int32 idlePeriodMinutes) 
+        {
+            _idleMinutes = idlePeriodMinutes;
+            Report = new DirectoryCleanerReport();
+        }
+        #endregion Constructors
 
         #region Methods
         /// <summary>
@@ -26,8 +38,7 @@ namespace Task1
 
             if (directoryInfo.Exists )
             {
-                DirectoryCleanerReport report = ClearDirectoryRecursive(directoryInfo, 0);
-                report.PrintReport();
+                Report = ClearDirectoryRecursive(directoryInfo, 0);
             }
             else
             {
@@ -50,7 +61,7 @@ namespace Task1
             DirectoryInfo directoryInfo, 
             Int32 level)
         {
-            DirectoryCleanerReport report = new DirectoryCleanerReport(0,0);
+            DirectoryCleanerReport report = new DirectoryCleanerReport();
 
             foreach (DirectoryInfo subDir in directoryInfo.GetDirectories())
             {
