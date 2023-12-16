@@ -6,7 +6,7 @@
     public class DirectorySizeCalculator
     {
         #region Fields
-        private Int32 _tries = 0;
+        private Int32 _runs = 0;
         private Int64 _size = 0;
         private Int64 _diff = 0;
         #endregion Fields
@@ -22,7 +22,7 @@
         {
             Int64 temp = CalculateRecursive(directoryPath);
 
-            if (_size == 0)
+            if (_runs == 0)
             {
                 _size = temp;
             }
@@ -31,6 +31,8 @@
                 _diff = _size - temp;
                 _size = temp;
             }
+
+            _runs++;
         }
 
         /// <summary>
@@ -79,16 +81,14 @@
         /// </summary>
         public void PrintReport()
         {
-            String message = _tries == 0 ? "до" : "после";
+            String message = _runs == 1 ? "до" : "после";
 
             Console.WriteLine($"Размер папки {message} чистки: { _size } байт");
             
-            if (_tries > 0)
+            if (_runs > 1)
             {
                 Console.WriteLine($"Высвобождено: {_diff} байт");
             }
-
-            _tries++;
         }
         #endregion Methods
     }
