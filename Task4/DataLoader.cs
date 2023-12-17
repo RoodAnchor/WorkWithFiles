@@ -25,7 +25,7 @@ namespace FinalTask
                 Student[] students = BinaryTools.Deserialize<Student[]>(pathToFile);
                 List<String> groups = students.Select(x => x.Group).Distinct().ToList();
                 String desktopFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                String studentsFolderPath = String.Join(@"\", desktopFolderPath, "Students");
+                String studentsFolderPath = Path.Combine(desktopFolderPath, "Students");
                 DirectoryInfo directory = FSTools.CreateFolder(studentsFolderPath);
 
                 WriteData(directory, groups, students, writeMode);
@@ -59,12 +59,12 @@ namespace FinalTask
             {
                 foreach (String group in groups)
                 {
-                    FSTools.CreateFile($@"{directory.FullName}\{group}.txt", writeMode, ref createdFilesCount);
+                    FSTools.CreateFile(Path.Combine(directory.FullName, $"{group}.txt"), writeMode, ref createdFilesCount);
                 }
 
                 foreach (Student student in students)
                 {
-                    FileInfo file = new FileInfo($@"{directory.FullName}\{student.Group}.txt");                    
+                    FileInfo file = new FileInfo(Path.Combine(directory.FullName, $"{student.Group}.txt"));                    
 
                     if (file.Exists)
                     {
