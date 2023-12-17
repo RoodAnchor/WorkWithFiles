@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Task4": {
+      "commandName": "Project",
+      "commandLineArgs": "-path C:\\Users\\Андрей\\Documents\\Repos\\SkillFactory\\WorkWithFiles\\Task4\\misc\\Students.dat"
+    }
+  }
+}

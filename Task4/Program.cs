@@ -6,15 +6,18 @@
         {
             DataLoader loader = new DataLoader();
 
-            String folderPath = @"C:\Users\Андрей\Documents\Repos\SkillFactory\WorkWithFiles\Task4\misc\Students.dat";
-
-            foreach (String arg in args)
-            {
-                if (arg.StartsWith("-path:"))
-                    folderPath = arg.Remove(0, 6);
-            }
+            String folderPath = GetArgValue(args, "-path");
 
             loader.LoadFromFile(folderPath, Enums.WriteModeEnum.Override);
+        }
+
+        static String GetArgValue(string[] args, String name)
+        {
+            for (int i = 0; i < args.Length; i++)
+                if (args[i] == name)
+                    return args[i + 1];
+
+            return String.Empty;
         }
     }
 }
