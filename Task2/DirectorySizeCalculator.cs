@@ -17,7 +17,7 @@
         /// Так же высчитывает разницу между предыдущим подсчётом и текущим.
         /// </summary>
         /// <param name="directoryPath">Путь к папке размер которой необходимо подсчитать.</param>
-        /// <example>Calculate("C:\Folder\SubFolder")</example>
+        /// <remarks>Пример вызова: Calculate("C:\Folder\SubFolder");</remarks>
         public void Calculate(String directoryPath)
         {
             Int64 temp = CalculateRecursive(directoryPath);
